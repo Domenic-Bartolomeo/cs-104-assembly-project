@@ -96,7 +96,7 @@ _main:				// Start of main function
 	// number of bytes we need isn't divisible by 8, round up to the
 	// next multiple of 8.
 
-	sub sp #8
+	sub sp, #8
 
 loop:				// Start of the loop function
 	// The loop function is where all the real work happens.
