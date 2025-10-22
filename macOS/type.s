@@ -82,6 +82,8 @@ _main:				// Start of main function
 	// it needs to be the x20 register; come talk to me during office
 	// hours if you are curious why).
 
+	mov x20, x0
+
 	// The last sub-problem to solve in the main function is to give
 	// ourselves some space to store the letters we read from the file.
 	// We will use sp for this. Remember that when our program starts,
@@ -94,16 +96,24 @@ _main:				// Start of main function
 	// number of bytes we need isn't divisible by 8, round up to the
 	// next multiple of 8.
 
+	sub sp #8
+
 loop:				// Start of the loop function
 	// The loop function is where all the real work happens.
 
 	// The first sub-problem is putting the value we saved to x20
 	// into the first argument for read.
 
+	mov x20, x0
+
 	// Next, we put the value of sp into the second argument
+
+	mov sp, x1
 
 	// Finally, we put 1 into x2. The x2 register is always the third
 	// argument for a function.
+
+	add x2, #2
 
 	mov	x16, #3		// Put the number 3 into register x16 (read)
 	svc	#0x80		// Call the read function with 3 arguments
@@ -120,6 +130,9 @@ loop:				// Start of the loop function
 	// Now we need to check to see if the number we got back from the
 	// write function is 1. If it is not equal to 1, then we should go
 	// to the error function because it means something bad happened.
+
+	cmp x16, #1
+	bne error
 
 	// Last sub-problem for the loop function: if we got all the way
 	// here, it means everything was success for this letter and we
