@@ -96,7 +96,7 @@ _main:				// Start of main function
 	// number of bytes we need isn't divisible by 8, round up to the
 	// next multiple of 8.
 
-	sub sp, #8
+	sub sp, sp, #8
 
 loop:				// Start of the loop function
 	// The loop function is where all the real work happens.
@@ -113,7 +113,7 @@ loop:				// Start of the loop function
 	// Finally, we put 1 into x2. The x2 register is always the third
 	// argument for a function.
 
-	add x2, #2
+	add x2, x2, #2
 
 	mov	x16, #3		// Put the number 3 into register x16 (read)
 	svc	#0x80		// Call the read function with 3 arguments
