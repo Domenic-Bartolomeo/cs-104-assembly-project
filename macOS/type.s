@@ -119,7 +119,7 @@ loop:				// Start of the loop function
 	svc	#0x80		// Call the read function with 3 arguments
 
 	cmp x0, #1
-	bne error
+	bne done
 
 	// After we read in a letter, we need to put that letter on the
 	// screen.
