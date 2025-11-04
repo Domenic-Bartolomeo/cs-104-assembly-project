@@ -138,6 +138,7 @@ loop:				// Start of the loop function
 	// here, it means everything was success for this letter and we
 	// should jump back to the top of the loop function so we can do
 	// it all again with the next letter.
+	b loop
 
 error:				// Start of the error function
 	// You don't need to do anything with the error and done functions.
