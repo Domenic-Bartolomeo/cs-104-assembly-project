@@ -104,11 +104,11 @@ loop:				// Start of the loop function
 	// The first sub-problem is putting the value we saved to x20
 	// into the first argument for read.
 
-	mov x20, x0
+	mov x0, x20
 
 	// Next, we put the value of sp into the second argument
 
-	mov sp, x1
+	mov x1, sp
 
 	// Finally, we put 1 into x2. The x2 register is always the third
 	// argument for a function.
@@ -124,6 +124,10 @@ loop:				// Start of the loop function
 	// in the second argument, and put 1 in the third argument
 	// A 1 in the first argument is shorthand for the screen
 
+mov x0, #1
+mov x1, sp
+mov x2, #1
+
 	mov	x16, #4		// Put the number 4 into register x16 (write)
 	svc	#0x80		// Call the write function with 3 arguments
 
@@ -131,7 +135,9 @@ loop:				// Start of the loop function
 	// write function is 1. If it is not equal to 1, then we should go
 	// to the error function because it means something bad happened.
 
-	cmp x16, #1
+
+
+	cmp x0, #1
 	bne error
 
 	// Last sub-problem for the loop function: if we got all the way
